@@ -47,6 +47,10 @@ export default function App() {
   function clear() {
     setName('')
     setSlug('')
+  }
+
+  function onClear() {
+    clear()
     newField()
   }
 
@@ -84,7 +88,7 @@ export default function App() {
       <button onClick={onAdd}>
         Add
       </button>
-      <button onClick={clear}>
+      <button onClick={onClear}>
         Clear
       </button>
       <h2>Fields</h2>
