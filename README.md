@@ -1,3 +1,3 @@
-## Replace `useEffect()`
+## Name to slug
 
-How to replace a `useEffect()` call with a `const`.
+Replaces a `useEffect()` call.

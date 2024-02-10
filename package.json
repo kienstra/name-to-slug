@@ -1,7 +1,7 @@
 {
-  "name": "replace-use-effect",
+  "name": "name-to-slug",
   "version": "0.1.0",
-  "description": "A way to replace useEffect",
+  "description": "Converts the name to a slug",
   "keywords": [
     "reducer",
     "demo"
