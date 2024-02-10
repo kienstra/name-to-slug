@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import React from 'react'
 
 function toSlug(x) {
@@ -17,16 +17,24 @@ export default function App() {
   const autoSlugged = useRef(false)
   const ref = useRef()
 
-  useEffect(() => {
-    if (isNew) {
-      setSlug(toSlug(name))
-      autoSlugged.current = true
-    }
+  function newField() {
+    setIsNew(true)
+    autoSlugged.current = false
 
-    if (isNew && ref.current !== ref.current?.ownerDocument.activeElement) {
+    if (ref.current !== ref.current?.ownerDocument.activeElement) {
       ref.current.select()
     }
-  }, [name, isNew])
+  }
+
+  function onNameChange(event) {
+    event.preventDefault()
+    setName(event.target.value)
+
+    if (isNew) {
+      setSlug(toSlug(event.target.value))
+      autoSlugged.current = true
+    }
+  }
 
   function onAdd() {
     setFields({
@@ -39,8 +47,13 @@ export default function App() {
   function clear() {
     setName('')
     setSlug('')
-    autoSlugged.current = false
-    setIsNew(true)
+    newField()
+  }
+
+  function onNameBlur() {
+    if (autoSlugged.current) {
+      setIsNew(false)
+    }
   }
 
   return (
@@ -53,15 +66,8 @@ export default function App() {
         type="text"
         id="field-name"
         value={name}
-        onChange={(event) => {
-          event.preventDefault()
-          setName(event.target.value)
-        }}
-        onBlur={() => {
-          if (autoSlugged.current) {
-            setIsNew(false)
-          }
-        }}
+        onChange={onNameChange}
+        onBlur={onNameBlur}
       />
       <label htmlFor="field-slug">
         Slug
