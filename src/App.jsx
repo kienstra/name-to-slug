@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import React from 'react'
 
 function toSlug(x) {
@@ -10,12 +10,38 @@ function toSlug(x) {
 }
 
 export default function App() {
+  const [isNew, setIsNew] = useState(true)
   const [name, setName] = useState('')
   const [slug, setSlug] = useState('')
+  const [fields, setFields] = useState([])
+  const autoSlugged = useRef(false)
+  const ref = useRef()
 
   useEffect(() => {
-    setSlug(toSlug(name))
-  }, [name])
+    if (isNew) {
+      setSlug(toSlug(name))
+      autoSlugged.current = true
+    }
+
+    if (isNew && ref.current !== ref.current?.ownerDocument.activeElement) {
+      ref.current.select()
+    }
+  }, [name, isNew])
+
+  function onAdd() {
+    setFields({
+      ...fields,
+      [slug]: name,
+    })
+    clear()
+  }
+
+  function clear() {
+    setName('')
+    setSlug('')
+    autoSlugged.current = false
+    setIsNew(true)
+  }
 
   return (
     <div>
@@ -23,6 +49,7 @@ export default function App() {
         Name
       </label>
       <input
+        ref={ref}
         type="text"
         id="field-name"
         value={name}
@@ -30,8 +57,43 @@ export default function App() {
           event.preventDefault()
           setName(event.target.value)
         }}
+        onBlur={() => {
+          if (autoSlugged.current) {
+            setIsNew(false)
+          }
+        }}
       />
-      <p>Slug {slug}</p>
+      <label htmlFor="field-slug">
+        Slug
+      </label>
+      <input
+        type="text"
+        id="field-slug"
+        value={slug}
+        onChange={(event) => {
+          event.preventDefault()
+          setSlug(event.target.value)
+        }}
+      />
+      <button onClick={onAdd}>
+        Add
+      </button>
+      <button onClick={clear}>
+        Clear
+      </button>
+      <h2>Fields</h2>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Slug</th>
+        </tr>
+        {Object.entries(fields).map(([k, v]) => {
+          return <tr key={k}>
+            <td>{v}</td>
+            <td>{k}</td>
+          </tr>
+        })}
+      </table>
     </div>
   )
 }
