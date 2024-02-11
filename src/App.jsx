@@ -48,6 +48,12 @@ export default function App() {
     setIsNew(true)
   }
 
+  function onNameBlur() {
+    if (autoSlugged.current) {
+      setIsNew(false)
+    }
+  }
+
   return (
     <div>
       <label htmlFor="field-name">
@@ -59,11 +65,7 @@ export default function App() {
         id="field-name"
         value={name}
         onChange={onNameChange}
-        onBlur={() => {
-          if (autoSlugged.current) {
-            setIsNew(false)
-          }
-        }}
+        onBlur={onNameBlur}
       />
       <label htmlFor="field-slug">
         Slug
