@@ -74,10 +74,7 @@ function reducer(state, action) {
 
 export default function App() {
   const ref = useRef()
-  const [state, dispatch] = useReducer(
-    reducer,
-    initial
-  )
+  const [state, dispatch] = useReducer(reducer, initial)
 
   function selectInput() {
     if (ref.current !== ref.current?.ownerDocument.activeElement) {
