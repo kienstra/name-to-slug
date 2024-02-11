@@ -51,7 +51,6 @@ function reducer(state, action) {
           : state.isNew,
       },
       'ADD': {
-        ...state,
         fields: {
           ...state.fields,
           [state.slug]: state.name,
@@ -62,7 +61,7 @@ function reducer(state, action) {
         autoSlugged: false,
       },
       'CLEAR': {
-        ...state,
+        fields: state.fields,
         name: '',
         slug: '',
         isNew: true,
