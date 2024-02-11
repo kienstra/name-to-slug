@@ -62,7 +62,7 @@ export default function App() {
   return (
     <div>
       <label htmlFor="field-name">
-        Name
+        Field name
       </label>
       <input
         ref={ref}
@@ -73,7 +73,7 @@ export default function App() {
         onBlur={onNameBlur}
       />
       <label htmlFor="field-slug">
-        Slug
+        Field slug
       </label>
       <input
         type="text"
