@@ -28,6 +28,11 @@ export default function App() {
     }
   }, [name, isNew])
 
+  function onNameChange(event) {
+    event.preventDefault()
+    setName(event.target.value)
+  }
+
   function onAdd() {
     setFields({
       ...fields,
@@ -53,10 +58,7 @@ export default function App() {
         type="text"
         id="field-name"
         value={name}
-        onChange={(event) => {
-          event.preventDefault()
-          setName(event.target.value)
-        }}
+        onChange={onNameChange}
         onBlur={() => {
           if (autoSlugged.current) {
             setIsNew(false)
