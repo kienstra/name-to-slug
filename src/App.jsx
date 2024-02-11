@@ -33,6 +33,17 @@ export default function App() {
     setName(event.target.value)
   }
 
+  function onSlugChange(event) {
+    event.preventDefault()
+    setSlug(event.target.value)
+  }
+
+  function onNameBlur() {
+    if (autoSlugged.current) {
+      setIsNew(false)
+    }
+  }
+
   function onAdd() {
     setFields({
       ...fields,
@@ -46,12 +57,6 @@ export default function App() {
     setSlug('')
     autoSlugged.current = false
     setIsNew(true)
-  }
-
-  function onNameBlur() {
-    if (autoSlugged.current) {
-      setIsNew(false)
-    }
   }
 
   return (
@@ -74,10 +79,7 @@ export default function App() {
         type="text"
         id="field-slug"
         value={slug}
-        onChange={(event) => {
-          event.preventDefault()
-          setSlug(event.target.value)
-        }}
+        onChange={onSlugChange}
       />
       <button onClick={onAdd}>
         Add
