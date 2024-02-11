@@ -53,6 +53,7 @@ export default function App() {
       [slug]: name,
     })
     clear()
+    newField()
   }
 
   function clear() {
