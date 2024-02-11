@@ -36,11 +36,6 @@ export default function App() {
     }
   }
 
-  function onNameChange(event) {
-    event.preventDefault()
-    setName(event.target.value)
-  }
-
   function onSlugChange(event) {
     event.preventDefault()
     setSlug(event.target.value)
@@ -68,12 +63,6 @@ export default function App() {
   function onClear() {
     clear()
     newField()
-  }
-
-  function onNameBlur() {
-    if (autoSlugged.current) {
-      setIsNew(false)
-    }
   }
 
   return (
