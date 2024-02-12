@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import React from 'react'
 
 export default function App() {
@@ -9,20 +9,24 @@ export default function App() {
   const autoSlugged = useRef(false)
   const ref = useRef()
 
-  useEffect(() => {
-    if (isNew) {
-      setSlug(toSlug(name))
-      autoSlugged.current = true
-    }
+  function newField() {
+    setIsNew(true)
+    autoSlugged.current = false
 
-    if (isNew && ref.current !== ref.current?.ownerDocument.activeElement) {
+    if (isNew && ref.current !==
+      ref.current?.ownerDocument.activeElement) {
       ref.current.select()
     }
-  }, [name, isNew])
+  }
 
   function onNameChange(event) {
     event.preventDefault()
     setName(event.target.value)
+
+    if (isNew) {
+      setSlug(toSlug(event.target.value))
+      autoSlugged.current = true
+    }
   }
 
   function onSlugChange(event) {
@@ -42,8 +46,7 @@ export default function App() {
       [slug]: name,
     })
     clear()
-    setIsNew(true)
-    autoSlugged.current = false
+    newField()
   }
 
   function clear() {
@@ -53,8 +56,7 @@ export default function App() {
 
   function onClear() {
     clear()
-    setIsNew(true)
-    autoSlugged.current = false
+    newField()
   }
 
   return (
