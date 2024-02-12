@@ -50,6 +50,8 @@ export default function App() {
       [slug]: name,
     })
     clear()
+    setIsNew(true)
+    autoSlugged.current = false
   }
 
   function clear() {
@@ -59,8 +61,8 @@ export default function App() {
 
   function onClear() {
     clear()
-    autoSlugged.current = false
     setIsNew(true)
+    autoSlugged.current = false
   }
 
   return (
