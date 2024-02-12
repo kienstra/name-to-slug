@@ -1,14 +1,6 @@
 import { useRef, useState } from 'react'
 import React from 'react'
 
-function toSlug(x) {
-  return x
-    ?.toLowerCase()
-    .replace( /[^\w ]+/g, '' )
-    .replace( / +/g, '-' )
-    .replace( /_+/g, '-' )
-}
-
 export default function App() {
   const [isNew, setIsNew] = useState(true)
   const [name, setName] = useState('')
@@ -115,4 +107,12 @@ export default function App() {
       </table>
     </div>
   )
+}
+
+function toSlug(x) {
+  return x
+    ?.toLowerCase()
+    .replace( /[^\w ]+/g, '' )
+    .replace( / +/g, '-' )
+    .replace( /_+/g, '-' )
 }
