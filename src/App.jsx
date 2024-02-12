@@ -68,32 +68,38 @@ export default function App() {
 
   return (
     <div>
-      <label htmlFor="field-name">
-        Field name
-      </label>
-      <input
-        ref={ref}
-        type="text"
-        id="field-name"
-        value={name}
-        onChange={onNameChange}
-        onBlur={onNameBlur}
-      />
-      <label htmlFor="field-slug">
-        Field slug
-      </label>
-      <input
-        type="text"
-        id="field-slug"
-        value={slug}
-        onChange={onSlugChange}
-      />
-      <button onClick={onAdd}>
-        Add
-      </button>
-      <button onClick={onClear}>
-        Clear
-      </button>
+      <h1>Field Editor</h1>
+      <div>
+        <h2>New Field</h2>
+        <input
+          ref={ref}
+          type="text"
+          id="field-name"
+          value={name}
+          onChange={onNameChange}
+          onBlur={onNameBlur}
+        />
+        <label htmlFor="field-name">
+          Field name
+        </label>
+        <input
+          type="text"
+          id="field-slug"
+          value={slug}
+          onChange={onSlugChange}
+        />
+        <label htmlFor="field-slug">
+          Field slug
+        </label>
+      </div>
+      <div className="actions">
+        <button onClick={onAdd}>
+          Add
+        </button>
+        <button onClick={onClear}>
+          Clear
+        </button>
+      </div>
       <h2>Fields</h2>
       <table>
         <tr>
