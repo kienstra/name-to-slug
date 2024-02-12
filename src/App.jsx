@@ -15,7 +15,8 @@ export default function App() {
       autoSlugged.current = true
     }
 
-    if (isNew && ref.current !== ref.current?.ownerDocument.activeElement) {
+    if (isNew && ref.current !==
+      ref.current?.ownerDocument.activeElement) {
       ref.current.select()
     }
   }, [name, isNew])
