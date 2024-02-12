@@ -6,52 +6,31 @@ body {
   margin: 40px;
 }
 
-.navigation-container {
-  width: 150px;
-  float: left;
+input, label {
+  display: block;
+  min-width: 20rem;
 }
 
-.navigation-item-header {
-  color: 'white';
-  padding: 10px;
-  margin-left: 3px;
-  margin-top: 3px;
+input {
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
 }
 
-.navigation-item {
-  color: 'white';
-  padding: 10px;
-  margin-left: 3px;
-  margin-top: 3px;
-  cursor: pointer;
+label {
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+button {
+  margin-right: 1rem;
+}
+
+th {
   text-align: left;
-}
-
-.validation-message {
-  padding: 13;
-  color: 'black';
-}
-
-.logo {
-  padding-bottom: 20px;
-}
-
-.container input[type='text'] {
-  width: 140px;
-}
-
-.container {
-  width: 650px;
-  margin: auto;
-}
-
-.container .lr-submit {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  border: none;
-  background-color: #5bca06;
-  color: #ffffff;
-  width: 100px;
+  min-width: 10rem;
 }
